@@ -1,0 +1,504 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+
+
+class MyProject extends Frame{
+    Frame f1,f2,f;
+    public static void main(String args[]){
+        Frame f1=new Frame("Login Page");
+        Panel p=new Panel();
+        Label l1 = new Label("USERNAME:");
+        Label l2 = new Label("PASSWORD:");
+        Label l = new Label("->> LOGIN IN <<-");
+        Label clg =new Label("KONGU ENGINEERING COLLEGE ");
+        clg.setBackground(Color.PINK);
+        Label sp =new Label("SPORTS EVENT... ");
+        sp.setForeground(Color.YELLOW);
+        l1.setForeground(Color.red);
+        l2.setForeground(Color.red);
+
+        TextField t1 = new TextField(15);
+        TextField t2 = new TextField(15);
+
+        Button b1 = new Button("LOGIN");
+        Button b2 = new Button("CANCEL");
+
+        Font myFont = new Font("bold",Font.BOLD,20);
+        l.setFont(myFont);
+        l.setBackground(Color.cyan);
+        Font font = new Font("Serif",Font.BOLD,30);
+        clg.setFont(font);
+        Font fon = new Font("Serif",Font.ITALIC,15);
+        sp.setFont(fon);
+        Font fo = new Font("Serif",Font.ITALIC,15);
+        l1.setFont(fo);
+        l2.setFont(fo);
+
+        b1.setBackground(Color.GREEN);
+        b2.setBackground(Color.RED);
+        clg.setBounds(90,20,500,70);
+        sp.setBounds(270,90,500,50);
+        l.setBounds(0, 0, 400, 50);
+        l1.setBounds(50, 100, 90, 30);
+        t1.setBounds(160, 100, 160, 30);
+        l2.setBounds(50, 170, 90, 30);
+        t2.setBounds(160, 170, 160, 30);
+        b1.setBounds(80, 250, 80, 30);
+        b2.setBounds(240, 250, 80, 30);
+
+        f1.add(clg);f1.add(sp);
+        p.setBounds(150,150,400,350);
+        p.setBackground(Color.LIGHT_GRAY);
+        p.setLayout(null);
+        p.add(l);
+        p.add(l1);
+        p.add(t1);
+        p.add(l2);
+        p.add(t2);
+        p.add(b1);
+        p.add(b2);
+        f1.add(p);
+
+        f1.setSize(700, 700);
+        f1.setLocationRelativeTo(null);
+        f1.setBackground(Color.DARK_GRAY);
+        f1.setLayout(null);
+        f1.setVisible(true);
+        f1.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e){
+                f1.dispose();
+            }
+        });
+
+        b1.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                Frame f=new Frame("User Details");
+                f.setBackground(Color.lightGray);
+                MenuBar mb=new MenuBar();
+                Menu m1=new Menu("HOME");
+                Menu m2=new Menu("About us");
+                Menu m3=new Menu("Programmes");
+                Menu m4=new Menu("Departments");
+                Menu t=new Menu("Technical Departments");
+                Menu nt=new Menu("Non-Technical Departments");
+
+                MenuItem sm1=new MenuItem("Auto-Mobile Engineering");
+                MenuItem sm2=new MenuItem("Artificial Intelligence and Machine Learing");
+                MenuItem sm3=new MenuItem("Civil Engineering");
+                MenuItem sm4=new MenuItem("Information Technology");
+                MenuItem sm5=new MenuItem("Mechanical Engineering");
+                MenuItem sm6=new MenuItem("Chemical Engineering");
+                MenuItem sm7=new MenuItem("Computer Science Engineering");
+                MenuItem sm8=new MenuItem("Computer Science and Design");
+                MenuItem sm9=new MenuItem("Food Technology");
+
+                MenuItem p1=new MenuItem("UnderGraduate");
+                MenuItem p2=new MenuItem("PostGraduate");
+                MenuItem p3=new MenuItem("Applied Science");
+                MenuItem p4=new MenuItem("Doctral Programmes");
+
+                MenuItem a1=new MenuItem("User Profile");
+                MenuItem a2=new MenuItem("Contact us");
+                MenuItem a3=new MenuItem("First-Aid");
+                MenuItem a4=new MenuItem("Programme Details");
+                MenuItem a5=new MenuItem("venue");
+
+                MenuItem b1=new MenuItem("About KEC");
+                MenuItem b2=new MenuItem("Head of Institution");
+                MenuItem b3=new MenuItem("Governing Council");
+                MenuItem b4=new MenuItem("Academic Council");
+                MenuItem b5=new MenuItem("Sports Rank");
+                MenuItem b6=new MenuItem("college game Rules");
+
+                Menu g=new Menu("Sports");
+                Menu sg1=new Menu("IN-DOOR GAMES");
+                Menu sg2=new Menu("OUT-DOOR GAMES");
+
+                MenuItem ig1=new MenuItem("Table Tennis");MenuItem ig4=new MenuItem("Free Fire");
+                MenuItem ig2=new MenuItem("Chess");MenuItem ig5=new MenuItem("Yoga");
+                MenuItem ig3=new MenuItem("Carrom");MenuItem ig6=new MenuItem("ludo");
+
+                MenuItem og1=new MenuItem("Cricket");MenuItem og4=new MenuItem("Foot Ball");
+                MenuItem og2=new MenuItem("Volley Ball");MenuItem og5=new MenuItem("Basket Ball");
+                MenuItem og3=new MenuItem("Tennis");MenuItem og6=new MenuItem("Kabaddi");
+
+
+                sg1.add(ig1);sg1.add(ig2);sg1.add(ig3);sg1.add(ig4);sg1.add(ig5);sg1.add(ig6);
+                sg2.add(og1);sg2.add(og2);sg2.add(og3);sg2.add(og4);sg2.add(og5);sg2.add(og6);
+                m1.add(b1);m1.add(b2);m1.add(b3);m1.add(b4);m1.add(b5);m1.add(b6);
+                m2.add(a1);m2.add(a2);m2.add(a3);m2.add(a4);m2.add(a5);
+                m3.add(p1);m3.add(p2);m3.add(p3);m3.add(p4);
+                nt.add(sm1);t.add(sm2);nt.add(sm3);t.add(sm4);nt.add(sm5);
+                nt.add(sm6);t.add(sm7);t.add(sm8);nt.add(sm9);
+                m4.add(t);m4.add(nt);g.add(sg1);g.add(sg2);
+                mb.add(m1);mb.add(m2);mb.add(m3);mb.add(m4);mb.add(g);
+
+                Font font = new Font("Serif",Font.BOLD,15);
+                
+                Label nameLabel = new Label("Name :");
+                Label sexLabel = new Label("Gender :");
+                Label RollLabel = new Label("Roll-No :");
+                Label bloodGroupLabel = new Label("Blood Group:");
+                Label TeamNameLabel = new Label("Team Name:");
+                Label TeamMatesLabel = new Label("TeamMates:");
+                Label depLabel = new Label("Department :");
+                Label SectionLabel = new Label("Section:");
+                Label SportsLabel = new Label("Sports:");
+                Label YearLabel = new Label("year List:");
+
+                nameLabel.setFont(font);        nameLabel.setForeground(Color.red);   
+                sexLabel.setFont(font);         sexLabel.setForeground(Color.red); 
+                RollLabel.setFont(font);        RollLabel.setForeground(Color.red); 
+                bloodGroupLabel.setFont(font);  bloodGroupLabel.setForeground(Color.red); 
+                TeamNameLabel.setFont(font);TeamNameLabel.setForeground(Color.red); 
+                TeamMatesLabel.setFont(font);   TeamMatesLabel.setForeground(Color.red); 
+                depLabel.setFont(font);         depLabel.setForeground(Color.red); 
+                SectionLabel.setFont(font);     SectionLabel.setForeground(Color.red); 
+                SportsLabel.setFont(font);      SportsLabel.setForeground(Color.red); 
+                YearLabel.setFont(font);        YearLabel.setForeground(Color.red); 
+        
+                TextField nameTextField = new TextField();
+                TextField TeamNameTextField = new TextField();
+                TextField TeamMatesTextField = new TextField();
+        
+                CheckboxGroup sexCheckboxGroup = new CheckboxGroup();
+                Checkbox maleCheckbox = new Checkbox("Male", sexCheckboxGroup, false);
+                Checkbox femaleCheckbox = new Checkbox("Female", sexCheckboxGroup, false);
+                Checkbox othersCheckbox = new Checkbox("Others", sexCheckboxGroup, false);
+        
+                Choice bloodGroupChoice = new Choice();
+                bloodGroupChoice.add("  ");
+                bloodGroupChoice.add("A+");
+                bloodGroupChoice.add("A-");
+                bloodGroupChoice.add("B+");
+                bloodGroupChoice.add("B-");
+                bloodGroupChoice.add("O+");
+                bloodGroupChoice.add("O-");
+                bloodGroupChoice.add("AB+");
+                bloodGroupChoice.add("AB-");
+        
+                Choice depChoice = new Choice();
+                depChoice.add("  ");
+                depChoice.add("Information Technology");
+                depChoice.add("Auto-Mobile Engineering");
+                depChoice.add("Artificial Intelligence and Machine Learing");
+                depChoice.add("Artificial Intelligence and data Science");
+                depChoice.add("Civil Engineering");
+                depChoice.add("Chemical Engineering");
+                depChoice.add("Computer Scince and Design");
+                depChoice.add("Computer Science Engineering");
+                depChoice.add("Electronics and Instrumentation Engineering");
+                depChoice.add("Electrical and Electronic Engineering");
+                depChoice.add("Electronics and Communications Engineering ");
+                depChoice.add("Food Technology");
+                depChoice.add("Mechanical Engineering");
+                depChoice.add("Mechatronics Engineering");
+
+                Choice SectionChoice = new Choice();
+                SectionChoice.add("  ");
+                SectionChoice.add("A");
+                SectionChoice.add("B");
+                SectionChoice.add("C");
+                SectionChoice.add("D");
+
+        Choice SportsChoice = new Choice();
+        SportsChoice.add("  ");
+        SportsChoice.add("Athletics");
+        SportsChoice.add("Basketball");
+        SportsChoice.add("Cricket");
+        SportsChoice.add("Chess");
+        SportsChoice.add("Carrom");
+        SportsChoice.add("Martial Arts");
+        SportsChoice.add("Football");
+        SportsChoice.add("volleyBall");
+        SportsChoice.add("Kabaddi");
+        
+        Choice Year = new Choice();
+        Year.add(" ");
+        Year.add("First");
+        Year.add("Second");
+        Year.add("Third");
+        Year.add("Fourth");
+        Year.add("PG");
+
+        Checkbox ck=new Checkbox("Agree* (The terms and Conditions)", sexCheckboxGroup, false);
+
+        TextField dobTextField = new TextField();
+
+        Button submitButton = new Button("Submit");
+
+        nameLabel.setBounds(100, 55, 80, 50);
+        nameTextField.setBounds(250, 70, 200, 20);
+
+        sexLabel.setBounds(100, 105, 100, 20);
+        maleCheckbox.setBounds(250, 100, 60, 20);
+        femaleCheckbox.setBounds(310, 100, 70, 20);
+        othersCheckbox.setBounds(380, 100, 80, 20);
+
+        RollLabel.setBounds(100, 140, 90, 20);
+        dobTextField.setBounds(250, 140, 200, 20);
+
+        SportsLabel.setBounds(100, 170, 90, 20);
+        SportsChoice.setBounds(250, 170, 200, 20);
+
+        TeamNameLabel.setBounds(100, 200, 100, 20);
+        TeamNameTextField.setBounds(250, 200, 200, 20);
+
+        TeamMatesLabel.setBounds(100, 240, 80, 20);
+        TeamMatesTextField.setBounds(250, 240, 200, 100);
+
+        depLabel.setBounds(100, 360, 80, 20);
+        depChoice.setBounds(250, 360, 200, 20);
+
+        SectionLabel.setBounds(100, 400, 80, 20);
+        SectionChoice.setBounds(250, 400, 200, 20);
+
+        bloodGroupLabel.setBounds(100, 440, 90, 20);
+        bloodGroupChoice.setBounds(250, 440, 200, 20);
+
+        YearLabel.setBounds(100, 480, 80, 20);
+        Year.setBounds(250, 480, 200, 20);
+        ck.setForeground(Color.blue);
+        ck.setBounds(170, 520,250,20);
+
+        submitButton.setBounds(250, 580, 150, 30);
+
+
+        f.add(nameLabel);
+        f.add(nameTextField);
+        f.add(sexLabel);
+        f.add(maleCheckbox);
+        f.add(femaleCheckbox);
+        f.add(othersCheckbox);
+        f.add(RollLabel);
+        f.add(dobTextField);
+        f.add(bloodGroupLabel);
+        f.add(bloodGroupChoice);
+        f.add(TeamNameLabel);
+        f.add(TeamNameTextField);
+        f.add(TeamMatesLabel);
+        f.add(TeamMatesTextField);
+        f.add(depLabel);
+        f.add(depChoice);
+        f.add(SectionLabel);
+        f.add(SectionChoice);
+        f.add(SportsLabel);
+        f.add(SportsChoice);
+        f.add(YearLabel);
+        f.add(Year);f.add(ck);
+        f.add(submitButton);
+        
+        submitButton.setBackground(Color.GREEN);
+        
+
+        f.setMenuBar(mb);
+        f.setSize(700, 700);
+        f.setLocationRelativeTo(null);
+        f.setLayout(null);
+        f.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e){
+                f.dispose();
+            }
+        });
+        f.setVisible(true);
+
+        submitButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent a){
+                Frame fr=new Frame("-> SuccessFully Submitted :-");
+                Button b=new Button("Details");
+                b.setBackground(Color.GREEN);
+                fr.setSize(700, 700);fr.setLocationRelativeTo(null);
+
+            JPanel panel = new JPanel() {
+            @Override
+                protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                ImageIcon backgroundImage = new ImageIcon("img.png");
+                g.drawImage(backgroundImage.getImage(), 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+            b.addActionListener(new ActionListener() {
+                 public void actionPerformed(ActionEvent a) {
+                        String name = nameTextField.getText();
+                        String gender = "";
+                        if (maleCheckbox.getState()) {
+                        gender = "Male";
+                        } else if (femaleCheckbox.getState()) {
+                        gender = "Female";
+                        } else if (othersCheckbox.getState()) {
+                        gender = "Others";
+                        }
+                        String rollNo = dobTextField.getText();
+                        String bloodGroup = bloodGroupChoice.getSelectedItem();
+                        String TeamName = TeamNameTextField.getText();
+                        String teamMates = TeamMatesTextField.getText();
+                        String department = depChoice.getSelectedItem();
+                        String section = SectionChoice.getSelectedItem();
+                        String sports = SportsChoice.getSelectedItem();
+                        String year = Year.getSelectedItem();
+
+                        
+                        Frame fr = new Frame("Submitted Details");
+                        
+                        Panel panel = new Panel();
+                        panel.setLayout(new GridLayout(12, 2,10,10));
+                        
+                        panel.add(new Label("   Venue: ") {
+                            {
+                                setFont(new Font("serif", Font.BOLD, 15));
+                                setForeground(Color.red);
+                            }
+                        });
+                        panel.add(new Label("Kongu Engineering Colloge Main Ground") {
+                            {
+                                setFont(new Font("serif", Font.BOLD, 15));
+                                
+                            }
+                        });
+                        panel.add(new Label("   Name: ") {
+                            {
+                                setFont(new Font("serif", Font.BOLD, 15));
+                                setForeground(Color.red);
+                            }
+                        });
+                        panel.add(new Label(name){
+                            {
+                                setFont(new Font("serif", Font.BOLD, 15));
+                            }
+                        });
+                        panel.add(new Label("   Gender: "){
+                            {
+                                setFont(new Font("serif", Font.BOLD, 15));
+                                setForeground(Color.red);
+                            }
+                        });
+                        panel.add(new Label(gender){
+                            {
+                                setFont(new Font("serif", Font.BOLD, 15));
+                            }
+                        });
+                        panel.add(new Label("   Roll-No: "){
+                            {
+                                setFont(new Font("serif", Font.BOLD, 15));
+                                setForeground(Color.red);
+                            }
+                        });
+                        panel.add(new Label(rollNo){
+                            {
+                                setFont(new Font("serif", Font.BOLD, 15));
+                            }
+                        });
+                        panel.add(new Label("   Sports: "){
+                            {
+                                setFont(new Font("serif", Font.BOLD, 15));
+                                setForeground(Color.red);
+                            }
+                        });
+                        panel.add(new Label(sports){
+                            {
+                                setFont(new Font("serif", Font.BOLD, 15));
+                            }
+                        });
+                       
+                        panel.add(new Label("   Team Name: "){
+                            {
+                                setFont(new Font("serif", Font.BOLD, 15));
+                                setForeground(Color.red);
+                            }
+                        });
+                        panel.add(new Label(TeamName){
+                            {
+                                setFont(new Font("serif", Font.BOLD, 15));
+                            }
+                        });
+                        panel.add(new Label("   TeamMates: "){
+                            {
+                                setFont(new Font("serif", Font.BOLD, 15));
+                                setForeground(Color.red);
+                            }
+                        });
+                        panel.add(new Label(teamMates){
+                            {
+                                setFont(new Font("serif", Font.BOLD, 15));
+                            }
+                        });
+                        panel.add(new Label("   Department: "){
+                            {
+                                setFont(new Font("serif", Font.BOLD, 15));
+                                setForeground(Color.red);
+                            }
+                        });
+                        panel.add(new Label(department){
+                            {
+                                setFont(new Font("serif", Font.BOLD, 15));
+                            }
+                        });
+                        panel.add(new Label("   Section: "){
+                            {
+                                setFont(new Font("serif", Font.BOLD, 15));
+                                setForeground(Color.red);
+                            }
+                        });
+                        panel.add(new Label(section){
+                            {
+                                setFont(new Font("serif", Font.BOLD, 15));
+                            }
+                        });
+                         panel.add(new Label("   Blood Group: "){
+                            {
+                                setFont(new Font("serif", Font.BOLD, 15));
+                                setForeground(Color.red);
+                            }
+                        });
+                        panel.add(new Label(bloodGroup){
+                            {
+                                setFont(new Font("serif", Font.BOLD, 15));
+                            }
+                        });
+                        panel.add(new Label("   Year: "){
+                            {
+                                setFont(new Font("serif", Font.BOLD, 15));
+                                setForeground(Color.red);
+                            }
+                        });
+                        panel.add(new Label(year){
+                            {
+                                setFont(new Font("serif", Font.BOLD, 15));
+                            }
+                        });
+
+                        fr.add(panel);
+                        fr.setSize(700, 700);
+                        fr.addWindowListener(new WindowAdapter() {
+                            public void windowClosing(WindowEvent e){
+                                fr.dispose();
+                            }
+                        });
+                        fr.setLocationRelativeTo(null);
+                        fr.setVisible(true);
+                    }
+                });
+         panel.add(b);
+        fr.add(panel);
+        
+        fr.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e){
+                f1.dispose();
+                f.dispose();
+                fr.dispose();
+            }
+        });
+        fr.setVisible(true);
+            }
+        });
+            }
+        });
+            b2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                f1.dispose();
+            }
+        });
+    }
+}
