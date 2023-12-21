@@ -1,0 +1,180 @@
+from tabulate import tabulate
+import mysql.connector
+connect = mysql.connector.connect(host="localhost",user="root",password="Diva@2005",database="IPL_AUCTION")
+sql=connect.cursor()
+
+##################  Auction table ################
+
+sql.execute("select * from auction")
+result=sql.fetchall()
+j=0;i=0 
+estimated_amount=100000000
+print('-' * 180, end='');print()
+print("\t\t\t\t\t\t\t\t\t----> CHENNAI SUPER KINGS <----")
+print('-' * 180, end='');print("\n")
+print("Estimated amount for CSK : 50 Crores\n")
+
+##############################  insert method ##############
+
+def insert(x):
+    sql=connect.cursor()
+    sql.execute("insert into squad_players(Name, Roll, Jersey_No, salary_paid, country) values(%s,%s,%s,%s,%s)", (x[1],x[2],x[3],x[4],x[5]))###
+def copy_insert(h,x):
+    sql=connect.cursor()
+    sql.execute("insert into copy(ID,Name, Roll) values(%s,%s,%s)", (h,x[1],x[2]))###
+
+############################# DELETE METHOD #################
+
+def delete(id):
+    sql=connect.cursor()
+    query="delete from game_players where jersey_no=%s"
+    user=(id,)
+    sql.execute(query,user)
+    print("Player Succesfully Dropped from the Squad....\n")
+
+##############################  Options ###############
+loop=True;total=0;count=0
+while loop==True:
+    ans=result[i]
+    l=list();l.append(ans)
+    print(tabulate(l,headers=["ID"," Player Name"," Roll","Jersey.No","Amount paid","Country"],tablefmt="fancy_grid"))
+    i+=1
+    print("\n\t\t=> Bit for",ans[1],"<=\n")
+    print("\t\tEnter (1) for select player :")
+    print("\t\tEnter (2) for Skip player >>")
+
+    choice=int(input("=> Enter Option :\t"))
+
+    if (count>=15):
+        print("\nExceeds the Maximum Number players...")
+        loop=False
+    elif choice==1:
+        total+=int(ans[4])
+        count+=1
+        print("\n\t\t\t=> ! Amount Used      : ",total,"\t<=\n\t\t\t=> ! Selected players : ",count,"\t\t<=\n")
+
+        insert(ans)
+        print('*' * 100, end='');print("\n\n")
+    elif choice==2:
+        print('*' * 100, end='');print("\n\n")
+    
+    else:
+        print("\t\t\t! Enter valid Option.... !")
+
+####################### Auction Completed ###############
+
+print("\n\n\t\t\t---->>\t\tGRAND AUCTION COMPELTED SUCCESSFULLY\t\t<----\n\n")
+sql.execute("select * from squad_players")
+dis=sql.fetchall()
+print('-' * 180, end='');print()
+print("\t\t\t\t\t\t\t\t\t----> CSK - SQUAD <----")
+print('-' * 180, end='');print("\n\n")
+print(tabulate(dis,headers=["ID"," Player Name"," Roll","Jersey.No","Amount paid","Country"],tablefmt="fancy_grid"))
+print("\n\n")
+
+######################  Players for Team ###############
+
+print("\1\1=>  Drop players from the squad for match..... ")
+sql.execute("insert into game_players(name,roll,Jersey_no) select name,roll,Jersey_no from squad_players")
+player_list=[]
+sql.execute("select Jersey_no from squad_players")
+play=sql.fetchall()
+for i in range(count):
+    jersey1=play[i]
+    temp=int(jersey1[0])
+    player_list.append(temp)
+
+###
+def Drop(n):
+    i=0
+    for i in range(15):
+        if (n-i)==10:
+            return i
+
+l1=True
+drop_count=count-1
+drop=Drop(drop_count)
+drop_list=[]
+droped_player_list=player_list.copy()
+print("\nSelected Players :",count)
+
+while (drop!=0):
+    print(f"\t\t---->\tDrop {drop} Players to Ready for the Match.....");print("\t\t\t\t=> ",droped_player_list)
+    print("\t\t---->\tEnter: Jersey Number\t")
+    n=int(input())
+    if n not in player_list:
+        print("\n\n\tENTER VALID JERSEY NUMBER !...\n")
+    elif n not in drop_list:
+        drop_list.append(n)
+        str(n)
+        delete(n)
+        drop-=1
+        droped_player_list.remove(n)
+    else:
+        print("\n\n\tWARNING...! The Entered Jersey Number is Already Dropped ! Try Again\n")
+
+    
+
+print("\n\n");print("__"*100,end="");print("__"*100,end="");print("\n\n")
+print("\t\t\t\t\t\t\t\t\t\t---->  FINAL SQUAD FOR MATCH  <-----")
+print("__"*100,end="");print("__"*100,end="");print("\n\n")
+
+def finalist():
+    sql=connect.cursor()
+    sql.execute("insert into final_squad(name,roll) select name,roll from game_players where roll=%s",("Batsman",))
+    sql.execute("insert into final_squad(name,roll) select name,roll from game_players where roll=%s",("WK-Batsman",))
+    sql.execute("insert into final_squad(name,roll) select name,roll from game_players where roll=%s",("All-rounder",))
+    sql.execute("insert into final_squad(name,roll) select name,roll from game_players where roll=%s",("Bowler",))
+    
+finalist()
+sql.execute("select * from final_squad")
+t2=sql.fetchall();h=1
+for i in range(11):
+    com=t2[i]
+    copy_insert(h,com)
+    h+=1
+
+sql.execute("select * from copy")
+t3=sql.fetchall()
+print(tabulate(t3,headers=["ID","Name"," Roll"],tablefmt="fancy_grid"))
+
+print("\n\n")
+print('-' * 180, end='');print()
+print("\t\t\t\t\t\t\t\t\t----> SQUAD PREPARATION COMPLETED SUCCESSFULLY... <----")
+print('-' * 180, end='');print("\n\n")
+print("\n\nVIEW...")
+view_loop=True
+while view_loop:
+    print("\n\t\t\tEnter 1: View Match Schedule...")
+    print("\t\t\tEnter 2: View Players Details...")
+    print("\t\t\tEnter 0: Exit...")
+    c=int(input())
+    if c==2:
+        sql.execute("CREATE table Player_table AS SELECT f.ID,f.name,f.Roll, p.MATCHES, p.RUNS,p.WICKETS,p.HS,p.SR,p.`50s`,p.`100s` FROM copy f JOIN players_details p ON f.ID = p.ID;")
+        sql.execute("select * from player_table")
+        players_view=sql.fetchall()
+        print(tabulate(players_view,headers=["ID","Name"," Roll","Matchs","Runs","Wickets","HS","SR","50s","100s"],tablefmt="fancy_grid"))
+        sql.execute("drop table player_table")
+    elif c==1:
+        print("\n\n")
+        print('-' * 180, end='');print()
+        print("\t\t\t\t\t\t\t\t\t----> IPL SCHEDULE 2024... <----")
+        print('-' * 180, end='');print("\n\n")
+        sql.execute("select * from ipl_schedule_2024")
+        schedule=sql.fetchall()
+        print(tabulate(schedule,headers=["ID","DATE","Matchs","TIME"],tablefmt="fancy_grid"))
+    elif c==0:
+        print("\n\n\n")
+        print('-' * 180, end='');print()
+        print("\t\t\t\t\t\t\t\t\t----> SUCCESSFULLY FINISHED... <----")
+        print('-' * 180, end='');print("\n\n")
+        heart = [
+        "  ****   ****  ","******* *******"," ***THANKS**** ","  ***********  ",
+        "   *********   ","    *******    ","      ***      ","       *       "
+        ]
+        for line in heart:
+            print(line)
+
+        view_loop=False
+    else:
+        print("ENTER VALID OPTIONS...")
